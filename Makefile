@@ -6,12 +6,12 @@ BUSYBOX_URL=https://www.busybox.net/downloads/busybox-$(BUSYBOX_VERSION).tar.bz2
 
 all: fs.tar
 
-linux-$(KERNEL_VERSION).tar.xz:
+linux-$(KERNEL_FULLVER).tar.xz:
 	wget $(KERNEL_URL)
 
-linux-$(KERNEL_VERSION): linux-$(KERNEL_VERSION).tar.xz
-	tar -xf linux-$(KERNEL_VERSION).tar.xz
-	cp kernel-config linux-$(KERNEL_VERSION)/.config
+linux-$(KERNEL_FULLVER): linux-$(KERNEL_FULLVER).tar.xz
+	tar -xf linux-$(KERNEL_FULLVER).tar.xz
+	cp kernel-config linux-$(KERNEL_FULLVER)/.config
 
 bzImage: linux-$(KERNEL_FULLVER) kernel-config
 	$(MAKE) -C linux-$(KERNEL_FULLVER)
