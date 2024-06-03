@@ -1,6 +1,7 @@
-KERNEL_VERSION=4.4.52
-KERNEL_URL=https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-$(KERNEL_VERSION).tar.xz
-BUSYBOX_VERSION=1.26.2
+KERNEL_MAVER=v6.x
+KERNEL_FULLVER=6.9.3
+KERNEL_URL=https://cdn.kernel.org/pub/linux/kernel/$(KERNEL_MAVER)/linux-$(KERNEL_FULLVER).tar.xz
+BUSYBOX_VERSION=1.36.1
 BUSYBOX_URL=https://www.busybox.net/downloads/busybox-$(BUSYBOX_VERSION).tar.bz2
 
 all: fs.tar
@@ -12,9 +13,9 @@ linux-$(KERNEL_VERSION): linux-$(KERNEL_VERSION).tar.xz
 	tar -xf linux-$(KERNEL_VERSION).tar.xz
 	cp kernel-config linux-$(KERNEL_VERSION)/.config
 
-bzImage: linux-$(KERNEL_VERSION) kernel-config
-	$(MAKE) -C linux-$(KERNEL_VERSION)
-	cp linux-$(KERNEL_VERSION)/arch/x86/boot/bzImage .
+bzImage: linux-$(KERNEL_FULLVER) kernel-config
+	$(MAKE) -C linux-$(KERNEL_FULLVER)
+	cp linux-$(KERNEL_FULLVER)/arch/x86/boot/bzImage .
 
 busybox-$(BUSYBOX_VERSION).tar.bz2:
 	wget $(BUSYBOX_URL)
